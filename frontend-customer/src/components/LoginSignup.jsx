@@ -4,8 +4,10 @@ import api from '../api';
 
 const LoginSignup = ({ setUser }) => {
     const [isLogin, setIsLogin] = useState(true);
+    const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -18,8 +20,11 @@ const LoginSignup = ({ setUser }) => {
                 setUser(res.data);
                 navigate('/');
             } else {
-                await api.post('/auth/register', { username, password, role: 'CUSTOMER' });
+                await api.post('/auth/register', { email,username, password, role: 'CUSTOMER' });
                 setIsLogin(true);
+                setEmail('');
+                setUsername('');
+                setPassword('');
                 alert('Registered successfully! Please login.');
             }
         } catch (err) {
@@ -32,6 +37,7 @@ const LoginSignup = ({ setUser }) => {
             <h2>{isLogin ? 'Customer Login' : 'Customer Signup'}</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {isLogin ? null : <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required style={{ padding: '8px' }} />}
                 <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required style={{ padding: '8px' }} />
                 <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required style={{ padding: '8px' }} />
                 <button type="submit" style={{ padding: '10px', background: '#e23744', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
