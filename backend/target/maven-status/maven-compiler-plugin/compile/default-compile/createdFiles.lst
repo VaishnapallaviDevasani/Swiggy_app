@@ -1,0 +1,16 @@
+com\zomato\controller\AuthController.class
+com\zomato\controller\FoodController.class
+com\zomato\model\CartItem.class
+com\zomato\service\CustomUserDetailsService.class
+com\zomato\repository\FoodRepository.class
+com\zomato\config\SecurityConfig.class
+com\zomato\model\Food.class
+com\zomato\controller\CartItemRequest.class
+com\zomato\repository\CartItemRepository.class
+com\zomato\controller\CartController.class
+com\zomato\ZomatoApplication.class
+com\zomato\controller\OrderController.class
+com\zomato\model\Order.class
+com\zomato\model\User.class
+com\zomato\repository\UserRepository.class
+com\zomato\repository\OrderRepository.class
