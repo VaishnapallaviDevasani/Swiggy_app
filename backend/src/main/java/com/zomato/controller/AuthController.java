@@ -36,7 +36,9 @@ public class AuthController {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body("Error: Username is already taken!");
         }
-
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body("Error: Email is already in use!");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // Ensure role format matches spring security requirement (e.g. ROLE_CUSTOMER or
